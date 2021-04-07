@@ -39,6 +39,9 @@ public class PlanetCreation : MonoBehaviour {
             TrailRenderer trailRenderer = body.gameObject.GetComponent<TrailRenderer>();
             trailRenderer.startColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
 
+            GameObject parent = GameObject.Find("Celestial Bodies");
+            body.transform.SetParent(parent.transform);
+            
             gameObjects.Add(body);
         }
 
