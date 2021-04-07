@@ -9,7 +9,6 @@ public class CollisionDetector : MonoBehaviour {
         }
         if ( int.Parse(other.gameObject.transform.name) > int.Parse(this.transform.name) ) {
             Destroy(other.gameObject);
-            print("Destroyed");
             
             Rigidbody rb = this.GetComponent<Rigidbody>();
             Rigidbody rb2 = other.gameObject.GetComponent<Rigidbody>();
