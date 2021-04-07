@@ -46,10 +46,10 @@ public class PlanetCreation : MonoBehaviour {
     }
 
     private void Update() {
+        Time.timeScale = timeScale;    
         if (body == null) {
             return;
         }
-        Time.timeScale = timeScale;    
         Rigidbody rb = body.GetComponent<Rigidbody>();
         LineRenderer lineRenderer = body.GetComponent<LineRenderer>();
         lineRenderer.SetPosition(1, rb.velocity);
