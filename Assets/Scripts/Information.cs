@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 
 public class Information : MonoBehaviour {
@@ -21,40 +22,40 @@ public class Information : MonoBehaviour {
     public float speed; 
     public float mass;
 
-    public bool allTrails;
+    bool allTrails = false;
 
     private void Start() {
         StartCoroutine(PlanetCounter());
         StartCoroutine(StarInformation());
-        StartCoroutine(AllTrailsChanged());
     }
 
-    IEnumerator AllTrailsChanged() {
-        bool previousAllTrails = false;
-        while(true) {
-            if (allTrails != previousAllTrails) {
-                print("Changed");
-                GameObject celestialBodies = GameObject.Find("Celestial Bodies");
-                List<GameObject> wasVisible = new List<GameObject>();
+    public void AllTrailsChanged() {
+        allTrails = !allTrails;
 
-                if (allTrails) {
-                    foreach (Transform body in celestialBodies.transform) {   
-                        if (body.gameObject.GetComponent<TrailRenderer>().widthMultiplier == 1f) {
-                            wasVisible.Add(body.gameObject);
-                        } else {
-                            body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 1.001f;
-                        }
-                    }
+        GameObject celestialBodies = GameObject.Find("Celestial Bodies");
+        List<GameObject> wasVisible = new List<GameObject>();
+
+        if (allTrails) {
+            foreach (Transform body in celestialBodies.transform) {   
+                if (body.gameObject.GetComponent<TrailRenderer>().widthMultiplier == 1f) {
+                    wasVisible.Add(body.gameObject);
                 } else {
-                    foreach (Transform body in celestialBodies.transform) {   
-                        if (body.gameObject.GetComponent<TrailRenderer>().widthMultiplier == 1.001f) {
-                            body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 0f;
-                        }
-                    }
+                    body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 1.001f;
                 }
-                previousAllTrails = allTrails;
             }
-            yield return new WaitForSeconds(0.1f);
+        } else {
+            foreach (Transform body in celestialBodies.transform) {   
+                if (body.gameObject.GetComponent<TrailRenderer>().widthMultiplier == 1.001f) {
+                    body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 0f;
+                }
+            }
+        }
+    }
+
+    public void ClearTrails() {
+        GameObject celestialBodies = GameObject.Find("Celestial Bodies");
+        foreach (Transform body in celestialBodies.transform) {
+            body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 0f;
         }
     }
 
