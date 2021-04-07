@@ -7,13 +7,14 @@ using UnityEditor;
 public class Button : Editor {
     public override void OnInspectorGUI() {
         DrawDefaultInspector();
+        EditorGUILayout.LabelField("Trail Actions", EditorStyles.boldLabel);
 
         Information information = (Information) target;
 
-        if (GUILayout.Button("Enable all trails")) {
-            information.AllTrailsChanged();
+        if (GUILayout.Button(new GUIContent("Enable all Trails", "Hint: Press Space"))) {
+            information.EnableAllTrails();
         }
-        if (GUILayout.Button("Clear all trails")) {
+        if (GUILayout.Button(new GUIContent("Clear all Trails", "Hint: Press C"))) {
             information.ClearTrails();
         }
     }

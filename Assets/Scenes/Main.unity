@@ -439,8 +439,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.9375
-        value: 0.05645156
+        time: 0.9965278
+        value: 0.32258072
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 2100432976}
   - component: {fileID: 2100432977}
   - component: {fileID: 2100432978}
+  - component: {fileID: 2100432979}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -568,9 +569,9 @@ MonoBehaviour:
   timeScale: 2
   MainCamera: {fileID: 2100432970}
   PlanetCount: 100
-  initialSpaceSize: 1000
-  velocityMagnitude: 3000000
-  massMagnitude: 10000
+  initialSpaceSize: 500
+  velocityMagnitude: 3500000
+  massMagnitude: 5000
 --- !u!81 &2100432972
 AudioListener:
   m_ObjectHideFlags: 0
@@ -742,8 +743,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateTime: 1
-  Desciption: 
   planetCount: 0
   speed: 0
   mass: 0
-  allTrails: 0
+--- !u!114 &2100432979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100432970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686fe3de52e0bca44b9f2cb343c6d25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Desciption: 'Enable all Trails:    Space
+
+    Clear all Trails:    C'

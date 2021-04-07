@@ -9,11 +9,6 @@ public class Information : MonoBehaviour {
     [Range(0.001f, 10f)]
     public float updateTime;
 
-    [Space]
-    [SerializeField]
-    [TextArea]
-    private string Desciption;
-
     [Header("Number of Planet currently in Game")]
     [Tooltip("Amount of planet in scene. Updated Every 5 seconds.")]
     public int planetCount; 
@@ -29,7 +24,7 @@ public class Information : MonoBehaviour {
         StartCoroutine(StarInformation());
     }
 
-    public void AllTrailsChanged() {
+    public void EnableAllTrails() {
         allTrails = !allTrails;
 
         GameObject celestialBodies = GameObject.Find("Celestial Bodies");
