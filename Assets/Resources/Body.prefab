@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -5773435101265472900}
   - component: {fileID: 6231688112657654413}
   - component: {fileID: 4591854249031741298}
+  - component: {fileID: 1640696240669689589}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5471908932996202912}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!23 &5471908932996202917
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -356,6 +357,32 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1640696240669689589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5471908932996202912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35db70792844104eacd3e1d100421c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolution: 66
+  radius: 0.5
+  amplitude: 0.8
+  frequency: 0.5
+  octaves: 8
+  lacinarity: 2
+  persistance: 0.45
+  meshFilters:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7779788241065219814
 GameObject:
   m_ObjectHideFlags: 0
