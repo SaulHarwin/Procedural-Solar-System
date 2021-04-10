@@ -7,7 +7,7 @@ public class TerrainFace{
     Noise noise = new Noise();
     planetData planetData;
 
-    Mesh mesh;
+    public Mesh mesh;
     Vector3 localUp; // Which way the planet is facing 
     Vector3 axisA;   // Perpendicular to localUp
     Vector3 axisB;   // Perpendicular to localUp and axisA
@@ -25,7 +25,7 @@ public class TerrainFace{
         axisB = Vector3.Cross(localUp, axisA);
     }
 
-    public void ConstructMesh(Vector2 offset) {
+    public void ConstructMesh() {
         Vector3[] vertices = new Vector3[resolution * resolution];
         int[] triangles = new int[(resolution - 1) * (resolution - 1) * 6];
         int triIndex = 0;

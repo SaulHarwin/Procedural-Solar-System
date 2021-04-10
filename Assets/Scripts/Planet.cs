@@ -18,7 +18,7 @@ public class Planet : MonoBehaviour {
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
     
-	private void OnValidate() {
+	private void Start() {
         planetData.resolution = resolution;
         planetData.radius = radius;
         planetData.amplitude = amplitude;
@@ -42,7 +42,8 @@ public class Planet : MonoBehaviour {
             if (meshFilters[i] == null) {
                 GameObject meshObj = new GameObject("mesh");
                 meshObj.transform.parent = transform;
-
+                meshObj.transform.localPosition = new Vector3(0, 0, 0);
+                meshObj.transform.localScale = new Vector3(1,1,1);
                 meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
@@ -52,10 +53,8 @@ public class Planet : MonoBehaviour {
     }
 
     void GenerateMesh() {
-        Vector2 offset = new Vector2(0f, 0f);
         foreach (TerrainFace face in terrainFaces) {
-            face.ConstructMesh(offset);
-            offset = offset + new Vector2(0, 0); 
+            face.ConstructMesh();
         }
     }
 }
