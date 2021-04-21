@@ -21,7 +21,7 @@ public class TerrainFace{
         this.resolution = planetData.resolution;
         this.mesh = mesh;
         this.localUp = localUp;
-        axisA = new Vector3(localUp.y, localUp.z, localUp.x);
+        axisA = new Vector3(localUp.y, localUp.z, localUp.x); 
         axisB = Vector3.Cross(localUp, axisA);
     }
 
@@ -39,6 +39,14 @@ public class TerrainFace{
         UpdateMesh(vertices, triangles);
     }
 
+    private void Sphere(Vector3[] vertices, int i, int x, int y) {
+        Vector2 percent = new Vector2(x, y) / (resolution - 1); 
+        Vector3 pointOnUnitCube = (localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB);
+        Vector3 pointOnUnitSphere = pointOnUnitCube.normalized * planetData.radius;
+        pointOnUnitSphere *= (1 + SebNoise(pointOnUnitSphere));
+        vertices[i] = pointOnUnitSphere;
+    }
+
     private float SebNoise(Vector3 point) {
         float noiseValue = 0;
         float frequency = planetData.frequency;
@@ -47,14 +55,6 @@ public class TerrainFace{
             noiseValue += ((noise.Evaluate(point * frequency) + 1) * .5f) * amplitude;
         }
         return noiseValue;
-    }
-
-    private void Sphere(Vector3[] vertices, int i, int x, int y) {
-        Vector2 percent = new Vector2(x, y) / (resolution - 1); 
-        Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
-        Vector3 pointOnUnitSphere = pointOnUnitCube.normalized * planetData.radius;
-        pointOnUnitSphere *= (1 + SebNoise(pointOnUnitSphere));
-        vertices[i] = pointOnUnitSphere;
     }
 
     private int Triangles(int[] triangles, int triIndex, int i, int x, int y) {
@@ -86,4 +86,5 @@ public struct planetData {
     public int octaves;
     public float lacinarity;
     public float persistance;
+    public int numFaces;
 }

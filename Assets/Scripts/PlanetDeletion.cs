@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlanetDeletion : MonoBehaviour {
     public IEnumerator DistanceCheck(List<GameObject> gameObjects) {
         while (true) {
+            Vector3 starPosition = GameObject.Find("-1").transform.position;
+
             List<GameObject> gameObjectsToRemove = new List<GameObject>();
             foreach (GameObject obj in gameObjects) {
-                if (obj.transform.position.x > 10000 || obj.transform.position.y > 10000 || obj.transform.position.z > 10000) {
+                if (System.Math.Abs(Vector3.Distance(obj.transform.position, starPosition)) > 1000000) {
+                    print(obj.name + " was delete because it was too far away! (" + Vector3.Distance(obj.transform.position, starPosition) + ")");
                     Destroy(obj);
                     gameObjectsToRemove.Add(obj);
                 }

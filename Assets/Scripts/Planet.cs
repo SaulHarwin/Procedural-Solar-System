@@ -5,6 +5,8 @@ using UnityEngine;
 public class Planet : MonoBehaviour {
     planetData planetData;
 
+    public static Transform player;
+
     [Range(2,240)]
     public int resolution = 240;
     public float radius;
@@ -13,12 +15,29 @@ public class Planet : MonoBehaviour {
     public int octaves;
     public float lacinarity;
     public float persistance;
+    int numFaces;
+    int numFacesPerDirection;
 
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
     
+    public static Dictionary<int, float> detailLevelDistances = new Dictionary<int, float>() {
+        {0, Mathf.Infinity},
+        {1, 60f},
+        {2, 25f},
+        {3, 10f},
+        {4, 4f},
+        {5, 1.5f},
+        {6, 0.7f},
+        {7, 0.3f},
+        {8, 0.1f},
+    };
+
 	private void Start() {
+        numFacesPerDirection = (int)((radius / 10000)*(radius / 10000));
+        numFaces = numFacesPerDirection * 6;
+
         planetData.resolution = resolution;
         planetData.radius = radius;
         planetData.amplitude = amplitude;
@@ -26,19 +45,20 @@ public class Planet : MonoBehaviour {
         planetData.octaves = octaves;
         planetData.lacinarity = lacinarity;
         planetData.persistance = persistance;
-        
+        planetData.numFaces = numFaces;
         Initialize();
         GenerateMesh();
 	}
 
 	void Initialize() {
-        if (meshFilters == null || meshFilters.Length == 0) {
-            meshFilters = new MeshFilter[6];
-        }
-        terrainFaces = new TerrainFace[6];
+        // if (meshFilters == null || meshFilters.Length == 0) {
+            meshFilters = new MeshFilter[planetData.numFaces];
+        // }
+        terrainFaces = new TerrainFace[planetData.numFaces];
+        
         Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back };
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < planetData.numFaces; i++) {
             if (meshFilters[i] == null) {
                 GameObject meshObj = new GameObject("mesh");
                 meshObj.transform.parent = transform;

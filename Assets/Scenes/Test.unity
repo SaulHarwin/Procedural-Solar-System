@@ -242,10 +242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35db70792844104eacd3e1d100421c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolution: 52
-  radius: 0.5
-  amplitude: 0.8
-  frequency: 0.5
+  resolution: 2
+  radius: 10000
+  amplitude: 0
+  frequency: 0.00005
   octaves: 8
   lacinarity: 2
   persistance: 0.45

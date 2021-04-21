@@ -29,7 +29,7 @@ public class PlanetCreation : MonoBehaviour {
             GameObject prefab = (GameObject)Resources.Load("Body");
             body = Instantiate(prefab, position, Quaternion.identity);
             body.transform.name = "" + i;    
-			body.transform.localScale = new Vector3(mass/100, mass/100, mass/100);
+			body.transform.localScale = new Vector3(mass, mass, mass);
             
             Rigidbody rb = body.GetComponent<Rigidbody>();
 			rb.mass = mass; 

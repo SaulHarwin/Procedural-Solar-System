@@ -13,8 +13,20 @@ public class Keybindings : MonoBehaviour {
             this.GetComponent<Information>().EnableAllTrails();
         }
 
+        if (Input.GetKeyDown(KeyCode.X)) {
+            this.GetComponent<Information>().DisableAllTrails();
+        }
+
         if (Input.GetKeyDown(KeyCode.C)) {
-            this.GetComponent<Information>().ClearTrails();
+            this.GetComponent<Information>().DeleteAllTrails();
+        }
+
+        if (Input.GetKeyDown("up")) {
+            this.GetComponent<Information>().IncreaseTime();
+        }
+
+        if (Input.GetKeyDown("down")) {
+            this.GetComponent<Information>().DecreaseTime();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Attractor : MonoBehaviour {
-	const float G = 0.6674f;
+	const float G = 6674f;
 	public static List<Attractor> Attractors;
 
 	public Rigidbody rb;

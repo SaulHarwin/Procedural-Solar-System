@@ -15,7 +15,7 @@ public class Button : Editor {
             information.EnableAllTrails();
         }
         if (GUILayout.Button(new GUIContent("Clear all Trails", "Hint: Press C"))) {
-            information.ClearTrails();
+            information.DisableAllTrails();
         }
     }
 }

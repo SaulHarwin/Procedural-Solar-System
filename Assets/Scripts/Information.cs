@@ -32,26 +32,45 @@ public class Information : MonoBehaviour {
 
         if (allTrails) {
             foreach (Transform body in celestialBodies.transform) {   
-                if (body.gameObject.GetComponent<TrailRenderer>().widthMultiplier == 1f) {
+                if (body.gameObject.GetComponent<TrailRenderer>().widthMultiplier == 3f) {
                     wasVisible.Add(body.gameObject);
                 } else {
-                    body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 1.001f;
+                    body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 3.001f;
                 }
             }
         } else {
             foreach (Transform body in celestialBodies.transform) {   
-                if (body.gameObject.GetComponent<TrailRenderer>().widthMultiplier == 1.001f) {
+                if (body.gameObject.GetComponent<TrailRenderer>().widthMultiplier == 3.001f) {
                     body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 0f;
                 }
             }
         }
     }
 
-    public void ClearTrails() {
+    public void DisableAllTrails() {
         GameObject celestialBodies = GameObject.Find("Celestial Bodies");
         foreach (Transform body in celestialBodies.transform) {
             body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = 0f;
         }
+    }
+
+    public void DeleteAllTrails() {
+        GameObject celestialBodies = GameObject.Find("Celestial Bodies");
+        foreach (Transform body in celestialBodies.transform) {
+            float width = body.gameObject.GetComponent<TrailRenderer>().widthMultiplier;
+            body.gameObject.GetComponent<TrailRenderer>().Clear();
+            body.gameObject.GetComponent<TrailRenderer>().widthMultiplier = width;
+        }
+    }
+
+    public void IncreaseTime() {
+        GameObject mainCamera = GameObject.Find("Main Camera");
+        mainCamera.GetComponent<PlanetCreation>().timeScale += 0.1f;
+    }
+
+    public void DecreaseTime() {
+        GameObject mainCamera = GameObject.Find("Main Camera");
+        mainCamera.GetComponent<PlanetCreation>().timeScale -= 0.1f;
     }
 
     IEnumerator PlanetCounter() {
